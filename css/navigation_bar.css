@@ -1,0 +1,22 @@
+*{box-sizing: border-box;border: 0px;margin: 0px;}
+
+body{background-image: url('back.jpg');}
+
+header{display: flex;justify-content: end;align-items: center;padding: 1.5% 7%;background-color: cadetblue;}
+
+.menu{list-style: none;}
+
+.menu  a , #logo {color: white;text-decoration: none;font-family: fantasy;}
+
+#logo{margin-right: auto;font-size: 25px;}
+
+.menu a{font-size: 20px;}
+
+.menu li {display: inline-block;margin-right: 30px; padding: 5px;}
+
+.menu a:hover{color: lightslategrey;}
+
+
+
+
+

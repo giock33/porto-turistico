@@ -1,0 +1,6 @@
+*{box-sizing: content-box;}
+#scelta{background-color: cadetblue;margin-top: 5px;}
+#scelta button{ background-color: blue;color: white;}
+#scelta li {text-align: center;list-style: none;display: inline;margin-right: 20px;}
+#scelta ul{text-align: center;}
+p{display: inline;}
