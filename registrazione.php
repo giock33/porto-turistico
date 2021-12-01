@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/registrazione.css">
 
 </head>
-<body style="background-color:gray;">
+<body >
  <!--Navigation bar-->
  <div id="nav-placeholder"></div>
 
