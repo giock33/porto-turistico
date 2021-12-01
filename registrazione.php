@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrazione</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <link rel="stylesheet" href="css/registrazione.css">
+    <link rel="stylesheet" href="css/registrazione.css?ts=<?=time()?>">
 
 </head>
 <body >
@@ -24,16 +24,16 @@ $(function(){
 <form enctype="multipart/form-data" action="registrazione.php" method="POST"  id="register" AUTOCOMPLETE="Off"> 
 
 <div id="invia"> 
-<input type="submit" value="invia" name="invia" >
+<input type="submit" value="INVIA" name="invia" >
 </div>
 
 <div id="great_left_form">
 <div id="left_form">  
 
-<h2 class="title">Nome proprietario</h2> 
-<input type="text"  name="nome_proprietario" class="inp_text" autocomplete="off"><br>
+<label class="title">Nome</label> 
+<input type="text"  name="nome_proprietario" class="inp_text" autocomplete="off"> <br>
 
-<h2 class="title">Cognome proprietario</h2> 
+<h2 class="title">Cognome</h2> 
 <input type="text"  name="cognome_proprietario" class="inp_text"><br>
 
 <h2 class="title">Codice Fiscale</h2> 
@@ -58,6 +58,7 @@ $(function(){
 
 <div id="great_right_form">  
 
+<div id="right_left_form">
 <h3 class="small_title">Nazionalità imbarcazione</h3> 
 <select id="nazionalita_imb" name="nazionalita_imb">
   <option value="italia">Italia
@@ -76,12 +77,16 @@ $(function(){
 </select><br>
 
 <h3 class="small_title"> Patente Nautica</h3> <input type="file" name="patente_nautica"><br>
+</div>
+
+
+<div id="right_right_form"> 
 <h3  class="small_title"> Foto imbarcazione</h3> <input type="file" name="foto_imbarcazione"><br>
 <h3  class="small_title"> Libretto di circolazione</h3> <input type="file" name="libretto_circolazione"><br>
 <h3  class="small_title"> Assicurazione imbarcazione</h3> <input type="file" name="assicurazione_imbarcazione"><br>
 <h3  class="small_title"> Carta di identità</h3> <input type="file" name="carta_identita"><br>
 </div>
-
+</div>
 
 
 
@@ -94,7 +99,7 @@ $(function(){
 
 if (isset($_POST['invia'])){
     $errore_inserimento=false;
-if (isset($_POST['nome_imb'])&&isset($_POST['nazionalita_imb'])&&isset($_POST['data_arrivo'])&&isset($_POST['Porto_provenienza'])&&isset($_POST['lunghezza'])&&isset($_POST['tipo_propulsione'])&&isset($_FILES['patente_nautica'])&&isset($_FILES['foto_imbarcazione'])&&isset($_FILES['libretto_circolazione'])&&isset($_FILES['assicurazione_imbarcazione'])&&isset($_FILES['carta_identita'])){
+if (isset($_POST['nome_imb'])&&isset($_POST['nazionalita_imb'])&&isset($_POST['data_arrivo'])&&isset($_POST['Porto_provenienza'])&&isset($_POST['lunghezza'])&&isset($_POST['tipo_propulsione'])&&is_uploaded_file($_FILES['patente_nautica']['tmp_name'])&&is_uploaded_file($_FILES['foto_imbarcazione']['tmp_name'])&&is_uploaded_file($_FILES['libretto_circolazione']['tmp_name'])&&is_uploaded_file($_FILES['assicurazione_imbarcazione']['tmp_name'])&&is_uploaded_file($_FILES['carta_identita']['tmp_name'])){
     $errore_formato=false;
     $tariffa_base=100;
     $costo_propulsione;
@@ -274,10 +279,10 @@ else {
         $query="INSERT INTO registrazioni  VALUES ('$idimbarcazione','$nome_proprietario','$cognome_priprietario','$c_fiscale','$nome','$nazionalita',
         '$data_arrivo','$porto_provenienza','$lunghezza','$propulsione','$canone_giornaliero')";
 
-        $result=mysqli_query($connection,$query ); 
+        $result=mysqli_query($connection,$query )or die (mysqli_error($connection));
 
         $query="INSERT INTO postazioni VALUES ('$sez','$nome','$idimbarcazione','$lunghezza')";
-        $result=mysqli_query($connection,$query)or die (mysqli_error($connection));
+        $result=mysqli_query($connection,$query)
        
 
         
@@ -300,7 +305,7 @@ else {
 
         ?>
         
-        <h2 style="color: darkred;background-color: gray;">La lunghezza della imbarcazione deve essere compresa tra 10m e 24m </h2>
+        <h2 style="color: darkred;">La lunghezza della imbarcazione deve essere compresa tra 10m e 24m </h2>
         <?php
         
         }
@@ -311,7 +316,7 @@ else {
 
         $errore_inserimento=true;
         ?>
-        <h2 style="color: darkred; background-color: gray;text-align: center;">Errore di inserimento , inserisci tutti i parametri richiesti</h2>
+        <h2 style="color: darkred;text-align: center;">Errore di inserimento , inserisci tutti i parametri richiesti</h2>
         <?php
         
         }

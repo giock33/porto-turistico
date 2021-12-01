@@ -1,0 +1,19 @@
+*{border: 0px;margin: 0px;box-sizing: content-box;}
+body{background-color: #fff;font-size: 15px;}
+
+#register {text-align: start;width: 1200px;margin-right: auto;margin-left: auto;height: 480px;margin-top: 80px;margin-left: 25px;display: inline-block;position: relative;}
+div{display: inline;}
+ .inp_text{width: 230px; height: 30px;padding: 10px; border: 1px solid #ccc;}
+ .title{ margin-top: 60px;margin-bottom: 3px;font-size: 20px;display: block;font-weight: bold;}
+ #left_form{float: left;margin-right: 50px;}
+ #middle_form{float: right;}
+ #great_left_form{position: relative;float: left;}
+ #right_left_form{position: relative;left: 0px;display: inline-block;}
+ #right_right_form{position: relative;right: 0px;display: inline-block;}
+ #great_right_form{position: relative;float: left;margin-left: 80px;top: 0px;}
+ .small_title{ margin-top: 50px;}
+ #invia{background-color: #eee;border: 1px solid #ddd;padding: 10px 15px;position: absolute;float: left; bottom: 0px;}
+ 
+
+
+ 
