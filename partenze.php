@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Partenze</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="css/partenze.css?ts=<?=time()?>&quot">
 </head>
-<body style="background-image: url('back.jpg');">
+<body>
  <!--Navigation bar-->
- <div id="nav-placeholder"></div>
+ <div id="bar"></div>
 
 <script>
 $(function(){
-  $("#nav-placeholder").load("navigation_bar.html");
+  $("#bar").load("navigation_bar.html");
 });
 </script>
 <!--end of Navigation bar-->
@@ -21,11 +22,11 @@ $(function(){
 
 if(!isset($_POST['invia'])){
 ?>
-<form action="" method="POST" style="background-color: cadetblue; text-align: center;border-radius: 70px;">
+<form action="" method="POST" id="partenza">
 
-<h3 style="margin-top: 100px; margin-left: 10px;">Inserire l' ID della imbarcazione che sta partendo </h3>
-<input type="text" name="id" style="margin-left: 20px;margin-top: 20px;">
-<input type="submit" name="invia" style="margin-bottom: 20px;">
+<h3 id="title">Inserire l' ID della imbarcazione che sta partendo </h3>
+<input type="text" name="id" id="id_imbarcazione">
+<input type="submit" name="invia" id="invia">
 
 
 </form>

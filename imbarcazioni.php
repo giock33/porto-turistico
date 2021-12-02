@@ -6,24 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>imbarcazioni</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <link rel="stylesheet" href="css/tables.css">
-    <link rel="stylesheet" href="css/imbarcazioni.css?ts=<?=time()?>">
+    <link rel="stylesheet" href="css/imbarcazioni.css?ts=<?=time()?>&quot">
 </head>
-<body style="background-image: url('back.jpg');">
+<body>
  <!--Navigation bar-->
- <div id="nav-placeholder"></div>
+ <div id="bar"></div>
 
 <script>
 $(function(){
-  $("#nav-placeholder").load("navigation_bar.html");
+  $("#bar").load("navigation_bar.html");
 });
 </script>
 <!--end of Navigation bar-->
          
-<div>
+
+
+        <div id="elenco">
+     <h1 id="title">Imbarcazioni</h1>
          <form id="scelta" action="" method="GET" >
           
            <ul>
+               
            
             <li><p>Ordina per :</p></li>
            <li><button  name="id">Id</button> </li>
@@ -35,18 +38,9 @@ $(function(){
            <li><button  name="lunghezza">Lunghezza</button></li>
            </ul>
            
-         
-         
-         
-         
-         
-         
-         
-         
          </form>
-
-        
          </div>
+         
         
     <?php
 
@@ -89,7 +83,7 @@ else if(isset($_GET['lunghezza'])){
 ?>
 
 
-    <table>
+    <table id="table-imbarcazioni">
     <tr>
     <th>Id imbarcazione</th>
     <th>nome</th>
@@ -107,18 +101,18 @@ else if(isset($_GET['lunghezza'])){
   
     while($row = mysqli_fetch_array($result)){
         ?>
-     <tr>
-     <td><?php echo "$row[0]";?></td>
-     <td><?php echo "$row[1]";?></td>
-     <td><?php echo "$row[2]";?></td>
-     <td><?php echo "$row[3]";?></td>
-     <td><?php echo "$row[4]";?></td>
-     <td><?php echo "$row[5]";?></td>
-     <td><?php echo "$row[6]";?></td>
-     <td><?php echo "$row[7]";?></td>
-     <td><?php echo "$row[8]";?></td>
-     <td><?php echo "$row[9]";?></td>
-     <td><?php echo "$row[10]";?></td>
+     <tr class="row_person">
+     <td class="person"> <a href="person.php"><div class="expand_person_link">  <?php echo "$row[0]";?> </div></a></td>
+     <td class="person"><?php echo "$row[1]";?></td>
+     <td class="person"><?php echo "$row[2]";?></td>
+     <td class="person"><?php echo "$row[3]";?></td>
+     <td class="person"><?php echo "$row[4]";?></td>
+     <td class="person"><?php echo "$row[5]";?></td>
+     <td class="person"><?php echo "$row[6]";?></td>
+     <td class="person"><?php echo "$row[7]";?></td>
+     <td class="person"><?php echo "$row[8]";?></td>
+     <td class="person"><?php echo "$row[9]";?></td>
+     <td class="person"><?php echo "$row[10]";?></td>
      
      </tr>
   <?php
@@ -137,7 +131,7 @@ else if(isset($_GET['lunghezza'])){
 ?>
 
 
-    <table  style='margin-top:100px;background-color: cadetblue;text-align: center;'>
+    <table id="table-imbarcazioni">
     <tr>
     <th>Id imbarcazione</th>
     <th>nome</th>
@@ -156,17 +150,17 @@ else if(isset($_GET['lunghezza'])){
     while($row = mysqli_fetch_array($result)){
         ?>
      <tr>
-     <td><?php echo "$row[0]";?></td>
-     <td><?php echo "$row[1]";?></td>
-     <td><?php echo "$row[2]";?></td>
-     <td><?php echo "$row[3]";?></td>
-     <td><?php echo "$row[4]";?></td>
-     <td><?php echo "$row[5]";?></td>
-     <td><?php echo "$row[6]";?></td>
-     <td><?php echo "$row[7]";?></td>
-     <td><?php echo "$row[8]";?></td>
-     <td><?php echo "$row[9]";?></td>
-     <td><?php echo "$row[10]";?></td>
+     <td class="person"><?php echo "$row[0]";?></td>
+     <td class="person"><?php echo "$row[1]";?></td>
+     <td class="person"><?php echo "$row[2]";?></td>
+     <td class="person"> <?php echo "$row[3]";?></td>
+     <td class="person"><?php echo "$row[4]";?></td>
+     <td class="person"><?php echo "$row[5]";?></td>
+     <td class="person"><?php echo "$row[6]";?></td>
+     <td class="person"><?php echo "$row[7]";?></td>
+     <td class="person"><?php echo "$row[8]";?></td>
+     <td class="person"><?php echo "$row[9]";?></td>
+     <td class="person"><?php echo "$row[10]";?></td>
      
      </tr>
   <?php

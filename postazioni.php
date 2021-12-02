@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Postazioni</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <link rel="stylesheet" href="css/tables.css">
+    <link rel="stylesheet" href="css/postazioni.css">
 </head>
-<body style="background-image: url('back.jpg');">
+<body>
  <!--Navigation bar-->
- <div id="nav-placeholder"></div>
+ <div id="bar"></div>
 
 <script>
 $(function(){
-  $("#nav-placeholder").load("navigation_bar.html");
+  $("#bar").load("navigation_bar.html");
 });
 </script>
 <!--end of Navigation bar-->
@@ -36,8 +36,8 @@ $(function(){
        
         
 
-
-        <table>
+        <h1 id="title">Posti d'imbarco</h1>
+        <table id="table-imbarcazioni">
         <tr>
         <th>Sezione</th>
         <th>Nome_imbarcazione</th>
@@ -48,11 +48,11 @@ $(function(){
      <?php
         while($row = mysqli_fetch_array($result)){
             ?>
-         <tr>
-         <td><?php echo"$row[0]";?></td>
-         <td><?php echo"$row[1]";?></td>
-         <td><?php echo"$row[2]";?></td>
-         <td><?php echo"$row[3]";?></td>
+         <tr class="row_imbarco">
+         <td class="imbarco"><?php echo"$row[0]";?></td>
+         <td class="imbarco"><?php echo"$row[1]";?></td>
+         <td class="imbarco"><?php echo"$row[2]";?></td>
+         <td class="imbarco"><?php echo"$row[3]";?></td>
          
          </tr>
          <?php

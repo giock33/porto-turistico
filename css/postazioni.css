@@ -1,0 +1,8 @@
+.imbarco{cursor: pointer;border: 1px solid #ccc;padding: 10px;font-size: 15px;}
+#table-imbarcazioni {text-align: center; border: 1px solid #ccc;width: 100%; }
+#table-imbarcazioni th{font-size: 17px;}
+#bar{position: fixed;width: 100%;top: 0;}
+#title{margin-top: 100px;margin-left: 30px;margin-bottom: 80px;}
+
+.expand_person_link{width: 100%; height: 100%;}
+a{text-decoration: none;color: #1D3117;}

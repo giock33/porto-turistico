@@ -1,0 +1,5 @@
+#bar{top: 0;position: fixed; width: 100%;}
+#title{margin-top: 100px; margin-bottom: 30px;}
+#partenza{text-align: center;margin-top: 200px;}
+#id_imbarcazione{width: 200px;height: 40px; border: 1px solid #ccc;}
+#invia{padding: 10px 15px;background-color: #1D3117;color: white;}

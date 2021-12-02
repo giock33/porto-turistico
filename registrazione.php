@@ -9,23 +9,25 @@
     <link rel="stylesheet" href="css/registrazione.css?ts=<?=time()?>">
 
 </head>
-<body >
+<body>
  <!--Navigation bar-->
- <div id="nav-placeholder"></div>
+ <div id="bar"></div>
 
 <script>
 $(function(){
-  $("#nav-placeholder").load("navigation_bar.html");
+  $("#bar").load("navigation_bar.html");
 });
 </script>
 <!--end of Navigation bar-->
 
 
 <form enctype="multipart/form-data" action="registrazione.php" method="POST"  id="register" AUTOCOMPLETE="Off"> 
+    
+<h1>Registrazione</h1>
 
-<div id="invia"> 
-<input type="submit" value="INVIA" name="invia" >
-</div>
+
+<input type="submit" value="INVIA" name="invia" id="invia" >
+
 
 <div id="great_left_form">
 <div id="left_form">  
@@ -90,7 +92,7 @@ $(function(){
 
 
 
- 
+
 
 </form>
 

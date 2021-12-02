@@ -1,10 +1,10 @@
 *{box-sizing: border-box;border: 0px;margin: 0px;}
 
-body{background-image: url('back.jpg');}
 
-header{ display: flex;justify-content: end;align-items: center;padding: 0.5% 7%;background-color: #1D3117;text-transform: uppercase;height: 75px;}
 
-.menu{list-style: none;}
+header{margin-top: 0px; justify-content: end;align-items: center;padding: 0.5% 7%;background-color: #1D3117;text-transform: uppercase;height: 75px;width: 100%;}
+
+.menu{list-style: none;float: right;}
 
 .menu  a , #logo {color: white;text-decoration: none;}
 
