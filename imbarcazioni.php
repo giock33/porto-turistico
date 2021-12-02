@@ -7,7 +7,7 @@
     <title>imbarcazioni</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="css/tables.css">
-    <link rel="stylesheet" href="css/imbarcazioni.css">
+    <link rel="stylesheet" href="css/imbarcazioni.css?ts=<?=time()?>">
 </head>
 <body style="background-image: url('back.jpg');">
  <!--Navigation bar-->

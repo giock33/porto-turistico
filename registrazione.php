@@ -282,7 +282,7 @@ else {
         $result=mysqli_query($connection,$query )or die (mysqli_error($connection));
 
         $query="INSERT INTO postazioni VALUES ('$sez','$nome','$idimbarcazione','$lunghezza')";
-        $result=mysqli_query($connection,$query)
+        $result=mysqli_query($connection,$query);
        
 
         
