@@ -23,7 +23,7 @@ $(function(){
 
 <form enctype="multipart/form-data" action="registrazione.php" method="POST"  id="register" AUTOCOMPLETE="Off"> 
     
-<h1>Registrazione</h1>
+<h1 style="font-size:25px">Registrazione</h1>
 
 
 <input type="submit" value="INVIA" name="invia" id="invia" >
@@ -225,7 +225,7 @@ else {
         }
         
         //Locazione finale della patente
-        $dirpatente=$dirImbarcazione.'/Patente Nautica---'.$patente_nautica;
+        $dirpatente=$dirImbarcazione.'/Patente nautica';
 
 
         ///Upload del file alla locazione finale
@@ -234,26 +234,26 @@ else {
             
 
        //Locazione finale della foto imbarcazione
-        $dirfoto=$dirImbarcazione.'/Foto Imbarcazione---'.$foto_imbarcazione;
+        $dirfoto=$dirImbarcazione.'/Foto imbarcazione';
 
         
         move_uploaded_file($tmp_foto_imbarcazione,$dirfoto);
 
 
         //Locazione finale del libretto di circolazione
-        $dirlibretto=$dirImbarcazione.'/Libretto Circolazione---'.$libretto_circolazione;
+        $dirlibretto=$dirImbarcazione.'/Libretto circolazione';
 
        
         move_uploaded_file($tmp_libretto_circolazione,$dirlibretto);
 
 
        //Locazione finale della assicurazione
-        $dirAssicurazione=$dirImbarcazione.'/Assicurazione Imbarcazione---'.$assicurazione_imbarcazione;
+        $dirAssicurazione=$dirImbarcazione.'/Assicurazione imbarcazione';
 
 
         move_uploaded_file($tmp_assicurazione_imbarcazione,$dirAssicurazione);
 
-        $dircarta_identita=$dirImbarcazione.'/Carta di identità---'.$carta_identita;
+        $dircarta_identita=$dirImbarcazione.'/Carta di identità';
 
 
         move_uploaded_file($tmp_carta_identita,$dircarta_identita);

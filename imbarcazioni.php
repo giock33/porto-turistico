@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>imbarcazioni</title>
+    <title>Imbarcazioni</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="css/imbarcazioni.css?ts=<?=time()?>&quot">
 </head>
@@ -22,7 +22,7 @@ $(function(){
 
 
         <div id="elenco">
-     <h1 id="title">Imbarcazioni</h1>
+     <h1 id="title">Utenti</h1>
          <form id="scelta" action="" method="GET" >
           
            <ul>
@@ -102,17 +102,19 @@ else if(isset($_GET['lunghezza'])){
     while($row = mysqli_fetch_array($result)){
         ?>
      <tr class="row_person">
-     <td class="person"> <a href="person.php"><div class="expand_person_link">  <?php echo "$row[0]";?> </div></a></td>
-     <td class="person"><?php echo "$row[1]";?></td>
-     <td class="person"><?php echo "$row[2]";?></td>
-     <td class="person"><?php echo "$row[3]";?></td>
-     <td class="person"><?php echo "$row[4]";?></td>
-     <td class="person"><?php echo "$row[5]";?></td>
-     <td class="person"><?php echo "$row[6]";?></td>
-     <td class="person"><?php echo "$row[7]";?></td>
-     <td class="person"><?php echo "$row[8]";?></td>
-     <td class="person"><?php echo "$row[9]";?></td>
-     <td class="person"><?php echo "$row[10]";?></td>
+         
+     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[0]";?> </div></a></td>
+     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[1]";?> </div></a></td>
+     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[2]";?> </div></a></td>
+     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[3]";?> </div></a></td>
+     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[4]";?> </div></a></td>
+     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[5]";?> </div></a></td>
+     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[6]";?> </div></a></td>
+     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[7]";?> </div></a></td>
+     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[8]";?> </div></a></td>
+     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[9]";?> </div></a></td>
+     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[10]";?> </div></a></td>
+     
      
      </tr>
   <?php
