@@ -7,6 +7,8 @@
     <title>Imbarcazioni</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="css/imbarcazioni.css?ts=<?=time()?>&quot">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
  <!--Navigation bar-->
@@ -44,7 +46,7 @@ $(function(){
         
     <?php
 
-$connection=mysqli_connect("localhost","root","","porto");
+$connection=mysqli_connect("localhost","","","my_sciaccaportoturistico");
 $ricerca=false;
 if(isset($_GET['name'])){
 
@@ -80,51 +82,62 @@ else if(isset($_GET['lunghezza'])){
     $query="SELECT * from registrazioni ORDER BY id_imbarcazione";
 
     $result=mysqli_query($connection,$query);
+
+   
 ?>
 
-
-    <table id="table-imbarcazioni">
-    <tr>
-    <th>Id imbarcazione</th>
-    <th>nome</th>
-    <th>cognome</th>
-    <th>codice_fiscale</th>
-    <th>nome_imbarcazione </th>
-    <th>nazionalità_imbarcazione</th>
-   <th>Data_arrivo</th>
-    <th>Porto_provenienza</th>
-    <th>Lunghezza in metri</th>
-    <th>Tipo_Propulsione</th>
-    <th>Canone Giornaliero</th>
+<table class="table table-hover table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Id imbarcazione</th>
+    <th scope="col">nome</th>
+    <th scope="col">cognome</th>
+    <th scope="col">codice_fiscale</th>
+    <th scope="col">nome_imbarcazione </th>
+    <th scope="col">Data_arrivo</th>
+    <th scope="col">Porto_provenienza</th>
+    <th scope="col">Lunghezza in metri</th>
+    
+    <th scope="col">Canone Giornaliero</th>
     </tr>
+  </thead>
+  <tbody>
+    
+  
+
+    
     <?php
   
     while($row = mysqli_fetch_array($result)){
         ?>
-     <tr class="row_person">
+     <tr >
          
-     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[0]";?> </div></a></td>
-     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[1]";?> </div></a></td>
-     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[2]";?> </div></a></td>
-     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[3]";?> </div></a></td>
-     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[4]";?> </div></a></td>
-     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[5]";?> </div></a></td>
-     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[6]";?> </div></a></td>
-     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[7]";?> </div></a></td>
-     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[8]";?> </div></a></td>
-     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[9]";?> </div></a></td>
-     <td class="person"> <a href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[10]";?> </div></a></td>
+     <th scope="row"class="person"> <a style="text-decoration: none;" href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[0]";?> </div></a></th>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[1]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[2]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[3]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[4]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[6]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[7]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[8]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[10]";?> </div></a></td>
      
      
      </tr>
   <?php
     
 
-    }
+    }?>
 
-}
+</tbody>
+</table>
 
-  
+<?php
+
+}?>
+
+
+  <?php
 
   if($ricerca){ 
     $query="SELECT * from registrazioni ORDER BY $ordine";
@@ -133,48 +146,52 @@ else if(isset($_GET['lunghezza'])){
 ?>
 
 
-    <table id="table-imbarcazioni">
+    <table class="table table-hover table-striped">
+    <thead class="thead-dark">
     <tr>
-    <th>Id imbarcazione</th>
-    <th>nome</th>
-    <th>cognome</th>
-    <th>codice_fiscale</th>
-    <th>nome_imbarcazione </th>
-    <th>nazionalità_imbarcazione</th>
-   <th>Data_arrivo</th>
-    <th>Porto_provenienza</th>
-    <th>Lunghezza in metri</th>
-    <th>Tipo_Propulsione</th>
-    <th>Canone Giornaliero</th>
+    <th scope="col">Id imbarcazione</th>
+    <th scope="col">nome</th>
+    <th scope="col">cognome</th>
+    <th scope="col">codice_fiscale</th>
+    <th scope="col">nome_imbarcazione </th>
+   <th scope="col">Data_arrivo</th>
+    <th scope="col">Porto_provenienza</th>
+    <th scope="col">Lunghezza in metri</th>
+    <th scope="col">Canone Giornaliero</th>
     </tr>
+    </thead>
     <?php
   
     while($row = mysqli_fetch_array($result)){
         ?>
      <tr>
-     <td class="person"><?php echo "$row[0]";?></td>
-     <td class="person"><?php echo "$row[1]";?></td>
-     <td class="person"><?php echo "$row[2]";?></td>
-     <td class="person"> <?php echo "$row[3]";?></td>
-     <td class="person"><?php echo "$row[4]";?></td>
-     <td class="person"><?php echo "$row[5]";?></td>
-     <td class="person"><?php echo "$row[6]";?></td>
-     <td class="person"><?php echo "$row[7]";?></td>
-     <td class="person"><?php echo "$row[8]";?></td>
-     <td class="person"><?php echo "$row[9]";?></td>
-     <td class="person"><?php echo "$row[10]";?></td>
+     <th scope="row"class="person"> <a style="text-decoration: none;" href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[0]";?> </div></a></th>
+     
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[1]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[2]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[3]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[4]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[6]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[7]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[8]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[10]";?> </div></a></td>
+     
      
      </tr>
   <?php
     
 
     }
+    ?>
+    </table>
+    <?php
 
 }
 
-
-
-
 ?>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </body>
 </html>

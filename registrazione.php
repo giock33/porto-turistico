@@ -20,13 +20,13 @@ $(function(){
 </script>
 <!--end of Navigation bar-->
 
-
+<div> 
 <form enctype="multipart/form-data" action="registrazione.php" method="POST"  id="register" AUTOCOMPLETE="Off"> 
     
 <h1 style="font-size:25px">Registrazione</h1>
 
 
-<input type="submit" value="INVIA" name="invia" id="invia" >
+
 
 
 <div id="great_left_form">
@@ -41,9 +41,23 @@ $(function(){
 <h2 class="title">Codice Fiscale</h2> 
 <input type="text"  name="c_fiscale" class="inp_text"><br>
 
+<h2 class="title">Email</h2> 
+<input type="text"  name="email" class="inp_text"><br>
+
+<h2 class="title">Telefono</h2> 
+<input type="text"  name="telefono" class="inp_text"><br>
+
 </div>
 
 <div id="middle_form">
+    
+<h3 class="small_title"> Genere</h3>
+<select id="genere" name="genere">
+  <option value="maschio">Maschio
+  <option value="femmina">Femmina
+  
+</select>
+
 <h2 class="title">Nome imbarcazione</h2> 
 <input type="text"  name="nome_imb" class="inp_text"><br>
 
@@ -53,6 +67,14 @@ $(function(){
 <h2 class="title">Lunghezza imbarcazione</h2>
  <input type="text"  name="lunghezza" class="inp_text"><br>
 
+ <h3 class="small_title">Nazionalità imbarcazione</h3> 
+<select id="nazionalita_imb" name="nazionalita_imb">
+  <option value="italia">Italia
+  <option value="francia">Francia
+  <option value="svizzera">Svizzera
+  
+</select><br>
+
 </div>
 </div>
 
@@ -61,13 +83,7 @@ $(function(){
 <div id="great_right_form">  
 
 <div id="right_left_form">
-<h3 class="small_title">Nazionalità imbarcazione</h3> 
-<select id="nazionalita_imb" name="nazionalita_imb">
-  <option value="italia">Italia
-  <option value="francia">Francia
-  <option value="svizzera">Svizzera
-  
-</select><br>
+
 <h3 class="small_title"> Data arrivo imbarcazione</h3>
 <input type="date"  name="data_arrivo"><br>
 
@@ -77,18 +93,23 @@ $(function(){
   <option value="vela">vela
   
 </select><br>
+<h3  class="small_title"> Foto imbarcazione</h3> <input type="file" name="foto_imbarcazione"><br>
 
 <h3 class="small_title"> Patente Nautica</h3> <input type="file" name="patente_nautica"><br>
+
+<h3  class="small_title"> Libretto di circolazione</h3> <input type="file" name="libretto_circolazione"><br>
 </div>
 
 
 <div id="right_right_form"> 
-<h3  class="small_title"> Foto imbarcazione</h3> <input type="file" name="foto_imbarcazione"><br>
-<h3  class="small_title"> Libretto di circolazione</h3> <input type="file" name="libretto_circolazione"><br>
+
+
 <h3  class="small_title"> Assicurazione imbarcazione</h3> <input type="file" name="assicurazione_imbarcazione"><br>
 <h3  class="small_title"> Carta di identità</h3> <input type="file" name="carta_identita"><br>
 </div>
 </div>
+
+<input type="submit" value="INVIA" name="invia" id="invia" > 
 
 
 
@@ -99,9 +120,20 @@ $(function(){
 
 <?php
 
+function validateEmail($email) {
+    if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+       
+        return true;
+    }
+    else {
+       
+        return false;
+    }
+}
+
 if (isset($_POST['invia'])){
     $errore_inserimento=false;
-if (isset($_POST['nome_imb'])&&isset($_POST['nazionalita_imb'])&&isset($_POST['data_arrivo'])&&isset($_POST['Porto_provenienza'])&&isset($_POST['lunghezza'])&&isset($_POST['tipo_propulsione'])&&is_uploaded_file($_FILES['patente_nautica']['tmp_name'])&&is_uploaded_file($_FILES['foto_imbarcazione']['tmp_name'])&&is_uploaded_file($_FILES['libretto_circolazione']['tmp_name'])&&is_uploaded_file($_FILES['assicurazione_imbarcazione']['tmp_name'])&&is_uploaded_file($_FILES['carta_identita']['tmp_name'])){
+if (isset($_POST['nome_imb'])&&isset($_POST['nazionalita_imb'])&&isset($_POST['data_arrivo'])&&isset($_POST['Porto_provenienza'])&&isset($_POST['lunghezza'])&&isset($_POST['tipo_propulsione'])&&isset($_POST['email'])&&isset($_POST['genere'])&&isset($_POST['telefono'])&&is_uploaded_file($_FILES['patente_nautica']['tmp_name'])&&is_uploaded_file($_FILES['foto_imbarcazione']['tmp_name'])&&is_uploaded_file($_FILES['libretto_circolazione']['tmp_name'])&&is_uploaded_file($_FILES['assicurazione_imbarcazione']['tmp_name'])&&is_uploaded_file($_FILES['carta_identita']['tmp_name'])){
     $errore_formato=false;
     $tariffa_base=100;
     $costo_propulsione;
@@ -117,10 +149,13 @@ if (isset($_POST['nome_imb'])&&isset($_POST['nazionalita_imb'])&&isset($_POST['d
     $nome_proprietario=$_POST['nome_proprietario'];
     $cognome_priprietario=$_POST['cognome_proprietario'];
     $c_fiscale=$_POST['c_fiscale'];
+    $email=$_POST['email'];
+    $genere=$_POST['genere'];
+    $telefono=$_POST['telefono'];
     
-
+   
   
-    if($lunghezza>10 && $lunghezza <=24){
+    if($lunghezza>10 && $lunghezza <=24 && validateEmail($email)){
        
     
 
@@ -148,7 +183,7 @@ if (isset($_POST['nome_imb'])&&isset($_POST['nazionalita_imb'])&&isset($_POST['d
 
        
 
-        $connection=mysqli_connect("localhost","root","","porto");
+        $connection=mysqli_connect("localhost","","","my_sciaccaportoturistico");
 
         
         $idimbarcazione=-1;
@@ -225,7 +260,7 @@ else {
         }
         
         //Locazione finale della patente
-        $dirpatente=$dirImbarcazione.'/Patente nautica';
+        $dirpatente=$dirImbarcazione.'/Patente nautica.png';
 
 
         ///Upload del file alla locazione finale
@@ -234,26 +269,26 @@ else {
             
 
        //Locazione finale della foto imbarcazione
-        $dirfoto=$dirImbarcazione.'/Foto imbarcazione';
+        $dirfoto=$dirImbarcazione.'/Foto imbarcazione.png';
 
         
         move_uploaded_file($tmp_foto_imbarcazione,$dirfoto);
 
 
         //Locazione finale del libretto di circolazione
-        $dirlibretto=$dirImbarcazione.'/Libretto circolazione';
+        $dirlibretto=$dirImbarcazione.'/Libretto circolazione.png';
 
        
         move_uploaded_file($tmp_libretto_circolazione,$dirlibretto);
 
 
        //Locazione finale della assicurazione
-        $dirAssicurazione=$dirImbarcazione.'/Assicurazione imbarcazione';
+        $dirAssicurazione=$dirImbarcazione.'/Assicurazione imbarcazione.png';
 
 
         move_uploaded_file($tmp_assicurazione_imbarcazione,$dirAssicurazione);
 
-        $dircarta_identita=$dirImbarcazione.'/Carta di identità';
+        $dircarta_identita=$dirImbarcazione.'/Carta di identità.png';
 
 
         move_uploaded_file($tmp_carta_identita,$dircarta_identita);
@@ -279,12 +314,14 @@ else {
        
       
         $query="INSERT INTO registrazioni  VALUES ('$idimbarcazione','$nome_proprietario','$cognome_priprietario','$c_fiscale','$nome','$nazionalita',
-        '$data_arrivo','$porto_provenienza','$lunghezza','$propulsione','$canone_giornaliero')";
+        '$data_arrivo','$porto_provenienza','$lunghezza','$propulsione','$canone_giornaliero','$email','$telefono','$genere')";
 
         $result=mysqli_query($connection,$query )or die (mysqli_error($connection));
 
         $query="INSERT INTO postazioni VALUES ('$sez','$nome','$idimbarcazione','$lunghezza')";
         $result=mysqli_query($connection,$query);
+
+       
        
 
         
@@ -303,13 +340,28 @@ else {
         
 
     } 
-    else{
+    if($lunghezza<10 || $lunghezza>24){
 
         ?>
-        
-        <h2 style="color: darkred;">La lunghezza della imbarcazione deve essere compresa tra 10m e 24m </h2>
+        <div class="alert alert-danger alert-dismissible fade show fixed-top " role="alert">
+  <strong>ERRORE </strong> La lunghezza della imbarcazione deve essere compresa tra 10m e 24m 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+       
         <?php
         
+        }
+
+         if(!validateEmail($email)){
+
+            ?>
+            <div class="alert alert-danger alert-dismissible fade show fixed-top " role="alert">
+  <strong>ERRORE </strong> Email non corretta
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+          
+            <?php
+
         }
     
 
@@ -318,7 +370,11 @@ else {
 
         $errore_inserimento=true;
         ?>
-        <h2 style="color: darkred;text-align: center;">Errore di inserimento , inserisci tutti i parametri richiesti</h2>
+       <div class="alert alert-danger alert-dismissible fade show fixed-bottom bottom-0" role="alert">
+  <strong>ERRORE </strong> Inserisci tutti i parametri richiesti
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+         
         <?php
         
         }
@@ -326,6 +382,12 @@ else {
 
 
 ?>
+
+
+
+
+
+</div>
     
 </body>
 </html>

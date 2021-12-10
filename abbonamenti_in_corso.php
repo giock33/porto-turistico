@@ -33,7 +33,7 @@
     
 
 <?php
- $connection=mysqli_connect("localhost","root","","porto");
+ $connection=mysqli_connect("localhost","","","my_sciaccaportoturistico");
  $query="SELECT * from registrazioni ORDER BY id_imbarcazione";
 
  $result=mysqli_query($connection,$query);

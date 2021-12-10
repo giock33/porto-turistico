@@ -22,7 +22,7 @@ $(function(){
 
     <?php
 
-        $connection=mysqli_connect("localhost","root","","porto");
+        $connection=mysqli_connect("localhost","","","my_sciaccaportoturistico");
 
 
     

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/person.css">
+    <link rel="stylesheet" href="css/person.css?ts=<?=time()?>">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <title>Utente</title>
 
@@ -27,12 +27,13 @@ $(function(){
 
 
 $id_imbarcazione= $_GET['ID'];
-$connection=mysqli_connect("localhost","root","","porto");
+$connection=mysqli_connect("localhost","","","my_sciaccaportoturistico");
 
 $query="SELECT * from registrazioni WHERE id_imbarcazione='$id_imbarcazione'";
+$querysezione="SELECT sezione from postazioni WHERE id_imbarcazione='$Id_imbarcazione'";
 
 $result=mysqli_query($connection,$query)or die(mysqli_error($connection));
-
+$resultsezione=mysqli_query($connection,$querysezione)or die(mysqli_error($connection));
 
 while($row=mysqli_fetch_array($result)){
 
@@ -47,8 +48,30 @@ while($row=mysqli_fetch_array($result)){
     $lunghezza=$row[8];
     $propulsione=$row[9];
     $costo_giornaliero=$row[10];
+    $email=$row[11];
+    $telefono=$row[12];
+    $genere=$row[13];
 }
-$data_arrivo=date("d/m/Y");
+while($row=mysqli_fetch_array($resultsezione)){
+
+    $sezione=$row[0];
+
+
+}
+
+if($genere=="maschio"){
+
+    $icona_utente="icona_utente_uomo.jpg";
+
+}
+else {
+
+    $icona_utente="icona_utente_donna.png";
+
+}
+
+
+
 //cartella generale di tutti i documenti
 $cartella_documenti="./Documenti";
 
@@ -229,10 +252,10 @@ else if(file_exists($assicurazione_imbarcazione_jpeg)){
       <div class="panel">
           <div class="user-heading round"style="background-color: white;" >
               <a href="#">
-                  <img src="icona_utente_uomo.jpg" style="width: 250px;height:250px; " alt="">
+                  <img src="<?php echo $icona_utente; ?>" style="width: 250px;height:250px; " alt="">
               </a>
               <h1 style="color: black;"><?php echo $nome."  ".$cognome;?></h1>
-              <p  style="color: black;">deydey@theEmail.com</p>
+              <p  style="color: black;"><?php echo $email;?></p>
           </div>
 
           <ul class="nav nav-pills nav-stacked">
@@ -256,14 +279,18 @@ else if(file_exists($assicurazione_imbarcazione_jpeg)){
                   <div class="bio-row">
                       <p> Cognome : <?php echo $cognome;  ?></p>
                   </div>
+
+                  <div class="bio-row">
+                      <p> Genere : <?php echo $genere;  ?></p>
+                  </div>
                   
                  
                   <div class="bio-row">
-                      <p>Email : jsmith@flatlab.com</p>
+                      <p>Email : <?php echo $email;?></p>
                   </div>
                 
                   <div class="bio-row">
-                      <p>Telefono : 88 (02) 123456</p>
+                      <p>Telefono : <?php echo $telefono;?></p>
                   </div>
                   <div class="bio-row">
                       <p>Data di arrivo : <?php echo $data_arrivo ?></p>
@@ -300,7 +327,7 @@ else if(file_exists($assicurazione_imbarcazione_jpeg)){
                   </div>
 
                   <div class="bio-row" style="width: 100%;">
-                      <p>Sezione del porto occupata : jsmith@flatlab.com</p>
+                      <p>Sezione del porto occupata : <?php echo $sezione ?></p>
                   </div>
                   <div class="bio-row">
                       <p>Porto di provenienza : <?php echo $porto_provenienza ?></p>
@@ -321,6 +348,58 @@ else if(file_exists($assicurazione_imbarcazione_jpeg)){
               </div>
           </div>
       </div>
+
+
+
+   <div id="bottom-conteiner-mail"> 
+
+      <form action="" method="post" id="form-mail">
+          <h1 class="title">Contatta</h1>
+
+      <textarea name="area-mail" id="area-mail" cols="30" rows="10" placeholder="Inserisci testo della mail ..."></textarea>
+
+      <button id="invia" name="invia">Invia mail</button>
+
+
+
+
+      </form>
+
+
+      <?php
+
+      if(isset($_POST['invia'])&&isset($_POST['area-mail'])){
+
+        $messaggio=$_POST['area-mail'];
+        
+
+
+        if(mail($email,"",$messaggio)){
+
+            echo "Email inviata con successo";
+
+
+        }
+        else{
+
+            echo "invio email fallito";
+        }
+
+
+
+      }
+
+
+
+      ?>
+
+      </div>
+
+
+
+
+
+      
       
 
     

@@ -20,6 +20,8 @@ $(function(){
 <!--end of Navigation bar-->
 <?php
 
+$connection=mysqli_connect("localhost","","","my_sciaccaportoturistico");
+
 if(!isset($_POST['invia'])){
 ?>
 <form action="" method="POST" id="partenza">
@@ -36,7 +38,7 @@ if(!isset($_POST['invia'])){
 }else {
 
 
-    $connection=mysqli_connect("localhost","root","","porto");
+   
   
 
     $tariffa_base=100;
@@ -75,6 +77,9 @@ if(!isset($_POST['invia'])){
             $costo_totale=$giorni_permanenza*$row[0];
             
         }
+
+        $query="INSERT INTO partenze VALUES ('$idimbarcazione','$nome','$nome_proprietario','$cognome_priprietario','$dataattuale')";
+        $result=mysqli_query($connection,$query);
 
         ///Funzione di rimozione di una cartella ed il suo contenuto 
         function removeDir($target)
@@ -137,5 +142,45 @@ else {
 
 ?>
 
+<?php
+
+
+$query="SELECT * from partenze";
+
+$result=mysqli_query($connection,$query);
+
+?>
+<h2 id="title">Cronologia Partenze</h2>
+<table  class="table table-hover table-striped">
+<thead class="thead-dark">
+    <tr>
+    <th scope="col">Id imbarcazione</th>
+    <th scope="col">nome imbarcazione</th>
+    <th scope="col">nome proprietario</th>
+    <th scope="col">cognome proprietario</th>
+    <th scope="col">data partenza </th>
+    </tr>
+</thead>
+
+<tbody>
+
+<?php
+
+while($row=mysqli_fetch_array($result)){
+
+?>
+<tr>
+<th class="person" scope="row"> <a style="text-decoration: none;" href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[0]";?> </div></a></th>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[1]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[2]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[3]";?> </div></a></td>
+     <td class="person"> <a class="a"href="person.php?ID=<?php echo $row[0]; ?>"><div class="expand_person_link">  <?php echo "$row[4]";?> </div></a></td>
+     </tr>
+
+<?php
+}
+?>
+</tbody>
+</table>
 </body>
 </html>
