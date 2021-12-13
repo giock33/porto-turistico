@@ -30,7 +30,7 @@ $id_imbarcazione= $_GET['ID'];
 $connection=mysqli_connect("localhost","","","my_sciaccaportoturistico");
 
 $query="SELECT * from registrazioni WHERE id_imbarcazione='$id_imbarcazione'";
-$querysezione="SELECT sezione from postazioni WHERE id_imbarcazione='$Id_imbarcazione'";
+$querysezione="SELECT Sezione from postazioni WHERE Id_imbarcazione='$id_imbarcazione'";
 
 $result=mysqli_query($connection,$query)or die(mysqli_error($connection));
 $resultsezione=mysqli_query($connection,$querysezione)or die(mysqli_error($connection));
@@ -260,6 +260,8 @@ else if(file_exists($assicurazione_imbarcazione_jpeg)){
 
           <ul class="nav nav-pills nav-stacked">
               <li><a href="#"> <i class="fa fa-edit"></i> Modifica profilo</a></li>
+              <li><a href="pagamento.php"> <i class="fa fa-edit"></i> Effettua pagamento</a></li>
+              <li><a href="#"> <i class="fa fa-edit"></i> Effettua partenza</a></li>
           </ul>
       </div>
   </div>

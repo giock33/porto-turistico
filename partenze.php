@@ -51,16 +51,17 @@ if(!isset($_POST['invia'])){
     $costo;
 
 
-    $query="SELECT * from registrazioni ";
+    $query="SELECT * from registrazioni WHERE id_imbarcazione='$id'";
     $result=mysqli_query($connection,$query);
 
         if(mysqli_num_rows($result)>0){   
-            $query="SELECT data_arrivo from registrazioni where id_imbarcazione='$id'";
+            $query="SELECT Data_arrivo from registrazioni where id_imbarcazione='$id'";
         $result=mysqli_query($connection,$query);
+        $dataattuale=date("Y/m/d");
         
         while($row = mysqli_fetch_array($result)) {
            
-            $dataattuale=date("Y/m/d");
+            
             
             
             
@@ -69,19 +70,9 @@ if(!isset($_POST['invia'])){
             
         } 
 
-        
-        $query="SELECT canone_giornaliero from registrazioni where id_imbarcazione='$id' ";
-        $result=mysqli_query($connection,$query);
-        while($row = mysqli_fetch_array($result)) {
-            
-            $costo_totale=$giorni_permanenza*$row[0];
-            
-        }
+      
 
-        $query="INSERT INTO partenze VALUES ('$idimbarcazione','$nome','$nome_proprietario','$cognome_priprietario','$dataattuale')";
-        $result=mysqli_query($connection,$query);
-
-        ///Funzione di rimozione di una cartella ed il suo contenuto 
+       /* ///Funzione di rimozione di una cartella ed il suo contenuto 
         function removeDir($target)
         {
             $directory = new RecursiveDirectoryIterator($target,  FilesystemIterator::SKIP_DOTS);
@@ -94,7 +85,7 @@ if(!isset($_POST['invia'])){
                 }
             }
             rmdir($target);
-        }
+        }*/
 
 
 
@@ -103,7 +94,7 @@ if(!isset($_POST['invia'])){
         
         
 
-        while($row = mysqli_fetch_array($result)){
+       /* while($row = mysqli_fetch_array($result)){
             $cartella="Documenti/".$row['1']."-".$row['2']."-".$row['0'];
         
             removeDir($cartella);
@@ -111,16 +102,37 @@ if(!isset($_POST['invia'])){
        
            
 
-        }
+        }*/
         $query="DELETE  FROM postazioni  WHERE Id_imbarcazione='$id'";
         $result=mysqli_query($connection,$query);
         
         
+       
+
+
+          
+        $query="SELECT * from registrazioni WHERE id_imbarcazione='$id' ";
+        $result=mysqli_query($connection,$query);
+        while($row = mysqli_fetch_array($result)) {
+            
+            
+            $idimbarcazione=$row[0];
+            
+            $nome_proprietario=$row[1];
+            $cognome_proprietario=$row[2];
+            $nome=$row[4];
+            $costo_totale=$giorni_permanenza*$row[10];
+            
+        }
+
+        $query="INSERT INTO partenze VALUES ('$idimbarcazione','$nome','$nome_proprietario','$cognome_proprietario','$dataattuale')";
+        $result=mysqli_query($connection,$query);
+
         $query="DELETE  FROM registrazioni  WHERE id_imbarcazione='$id'";
         $result=mysqli_query($connection,$query);
         
         ?>
-        <h2 style="color: white;margin-top: 25px;">Permanenza della imbarcazione  terminata</h2>
+        <h2 style="color: white;margin-top: 100px;">Permanenza della imbarcazione  terminata</h2>
         <h2 style="color: white;">Ecco il costo totale da pagare : <?php echo "$costo_totale "; ?> euro</h2>
        
         
